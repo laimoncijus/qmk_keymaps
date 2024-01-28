@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case CTL_TAP:
-      if (record->tap.count) { // on tap
+      if (!ctl_tap_active && record->tap.count) { // on tap
         if (record->event.pressed) { // key press
             set_oneshot_layer(_FL, ONESHOT_START);
             ctl_tap_active = true;
