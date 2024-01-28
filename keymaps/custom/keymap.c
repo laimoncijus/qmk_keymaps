@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FL] = LAYOUT( // functions layer:
 // ESC   |  F1     |  F2     |  F3     |  F4     |  F5     |  F6     |  F7     |  F8     |  F9     |  F10    |  F11    |  F12    |  PSCR   |  DEL    |  INS    |  PGUP   |  PGDN
-  QK_BOOT,  KC_MYCM,  KC_WHOM,  KC_CALC,  KC_MSEL,  KC_MPRV,  KC_MRWD,  KC_MPLY,  KC_MSTP,  KC_MUTE,  KC_VOLU,  KC_VOLD,  _______,  _______,  _______,  _______,  _______,  _______,
+  _______,  KC_MYCM,  KC_WHOM,  KC_CALC,  KC_MSEL,  KC_MPRV,  KC_MRWD,  KC_MPLY,  KC_MSTP,  KC_MUTE,  KC_VOLU,  KC_VOLD,  _______,  _______,  _______,  _______,  _______,  QK_BOOT,
 // °     |  1      |  2      |  3      |  4      |  5      |  6      |  7      |  8      |  9      |  0      |  ß      |  ´      |  BSPC   |  NUM    |  ÷      |  *      |  -
   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_NUM ,  _______,  _______,  _______,
 // TAB   |  q      |  w      |  e      |  r      |  t      |  z      |  u      |  i      |  o      |  p      |  ü      |  +      |  ENT    |  7      |  8      |  9      |  +
