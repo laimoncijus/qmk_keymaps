@@ -1,6 +1,6 @@
 # Custom keyboard layouts
 
-* [NW1](keyboards/gmmk/gmmk2/p96/iso/keymaps/nw1/readme.md) for [GMMK2 96% ISO]([2](https://www.gloriousgaming.com/products/gmmk2))
+* [NW1](keyboards/gmmk/gmmk2/p96/iso/keymaps/nw1/README.md) for [GMMK2 96% ISO](https://www.gloriousgaming.com/products/gmmk2)
 
 ## How to build
 
