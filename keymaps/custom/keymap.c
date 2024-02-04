@@ -1,3 +1,4 @@
+#include "print.h"
 #include QMK_KEYBOARD_H
 
 /* layer names */
@@ -32,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FL] = LAYOUT( // functions layer:
 // ESC   |  F1     |  F2     |  F3     |  F4     |  F5     |  F6     |  F7     |  F8     |  F9     |  F10    |  F11    |  F12    |  DEL    |  HOME   |  END    |  PSCR   |  PGUP
-  _______,  KC_MYCM,  KC_WHOM,  KC_CALC,  KC_MSEL,  KC_MPRV,  KC_MRWD,  KC_MPLY,  KC_MSTP,  KC_MUTE,  KC_VOLU,  KC_VOLD,  _______,  _______,  _______,  _______,  _______,  QK_BOOT,
+  _______,  KC_MYCM,  KC_WHOM,  KC_CALC,  KC_MSEL,  KC_MPRV,  KC_MRWD,  KC_MPLY,  KC_MSTP,  KC_MUTE,  KC_VOLU,  KC_VOLD,  _______,  _______,  _______,  _______,  DB_TOGG,  QK_BOOT,
 // °     |  1      |  2      |  3      |  4      |  5      |  6      |  7      |  8      |  9      |  0      |  ß      |  ´      |  BSPC   |  NUM    |  ÷      |  *      |  -
   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_NUM ,  _______,  _______,  _______,
 // TAB   |  q      |  w      |  e      |  r      |  t      |  z      |  u      |  i      |  o      |  p      |  ü      |  +      |  ENT    |  7      |  8      |  9      |  +
@@ -51,15 +52,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     case CTL_TAP:
       if (!ctl_tap_active && record->tap.count) { // on tap
         if (record->event.pressed) { // key press
-            set_oneshot_layer(_FL, ONESHOT_START);
-            ctl_tap_active = true;
-            ctl_tap_timer = timer_read();
+          dprint("set_oneshot_layer\n");
+          set_oneshot_layer(_FL, ONESHOT_START);
+          ctl_tap_active = true;
+          ctl_tap_timer = timer_read();
         }
         return false; // ignore further processing of key
       }
       break;
     default:
       if (ctl_tap_active && !record->event.pressed) {
+        dprint("clear_oneshot_layer_state\n");
         clear_oneshot_layer_state(ONESHOT_PRESSED);
         ctl_tap_active = false;
       }
@@ -70,8 +73,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 /* custom processing */
 void matrix_scan_user(void) {
   if (ctl_tap_active) {
+    dprintf("ctl_tap_active, elapsed: %d\n", timer_elapsed(ctl_tap_timer));
     if (timer_elapsed(ctl_tap_timer) > CTL_TAP_TIMEOUT) {
       // timeout occurred, deactivate layer
+      dprint("timeout! reset_oneshot_layer\n");
       reset_oneshot_layer();
       ctl_tap_active = false;
     }
