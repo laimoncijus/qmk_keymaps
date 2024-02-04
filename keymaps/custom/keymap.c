@@ -8,7 +8,7 @@
 /* custom keycodes */
 #define CTL_TAP LGUI_T(KC_F13)
 
-#define CTL_TAP_TIMEOUT 1000000 // 1 sec.
+#define CTL_TAP_TIMEOUT 500 // 0.5 sec.
 
 /* variables to track keyboard state */
 static bool ctl_tap_active = false;
@@ -76,8 +76,8 @@ void matrix_scan_user(void) {
     dprintf("ctl_tap_active, elapsed: %d\n", timer_elapsed(ctl_tap_timer));
     if (timer_elapsed(ctl_tap_timer) > CTL_TAP_TIMEOUT) {
       // timeout occurred, deactivate layer
-      dprint("timeout! reset_oneshot_layer\n");
-      reset_oneshot_layer();
+      dprint("timeout! clear_oneshot_layer_state\n");
+      clear_oneshot_layer_state(ONESHOT_PRESSED);
       ctl_tap_active = false;
     }
   }
