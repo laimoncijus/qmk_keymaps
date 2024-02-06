@@ -5,6 +5,16 @@
 #define _DL 0
 #define _FL 1
 
+/* tap dance */
+enum {
+    TD_DOCO,
+};
+
+tap_dance_action_t tap_dance_actions[] = {
+    // tap once for KC_DOT, twice for KC_COMM
+    [TD_DOCO] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMM),
+};
+
 /* custom keycodes */
 #define CTL_TAP LGUI_T(KC_F13)
 
@@ -29,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // LSFT  |  <      |  y      |  x      |  c      |  v      |  b      |  n      |  m      |  ,      |  .      |  -      |  RSFT   |  UP     |  1      |  2      |  3      |  ENT
   KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,    KC_P1,    KC_P2,    KC_P3,    KC_PENT,
 // LCTL  |  WIN    |  LALT   |                      SPC                                  |  RALT   |  FN     |  RCTL   |  LEFT   |  DOWN   |  RGHT   |  0      |  ,      |
-  KC_LCTL,  CTL_TAP,  KC_LALT,                      KC_SPC,                                 KC_RALT,  MO(_FL),  KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,    KC_PDOT),
+  KC_LCTL,  CTL_TAP,  KC_LALT,                      KC_SPC,                                 KC_RALT,  MO(_FL),  KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,    TD(TD_DOCO)),
 
 [_FL] = LAYOUT( // functions layer:
 // ESC   |  F1     |  F2     |  F3     |  F4     |  F5     |  F6     |  F7     |  F8     |  F9     |  F10    |  F11    |  F12    |  DEL    |  HOME   |  END    |  PSCR   |  PGUP
