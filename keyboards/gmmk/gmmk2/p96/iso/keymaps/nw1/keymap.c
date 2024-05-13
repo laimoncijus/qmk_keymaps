@@ -17,7 +17,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
 /* function layer tap */
 #define _FLTAP LGUI_T(KC_F13)
-#define _FLTAP_TIMEOUT 500 // 0.5 sec.
+#define _FLTAP_TIMEOUT 300 // ms.
 
 /* variables to track keyboard state */
 static bool _fltap_active = false;
